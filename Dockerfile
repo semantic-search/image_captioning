@@ -1,5 +1,4 @@
 FROM tensorflow/tensorflow:1.13.2-gpu-py3
-RUN apt-get install -y python3-pip
 RUN apt-get update
 RUN apt-get -y upgrade
 RUN apt-get -y install wget
@@ -17,10 +16,10 @@ RUN pip install flask-restplus
 RUN mkdir image_caption
 WORKDIR /root/image_caption
 RUN apt-get -y install git
-RUN git clone https://github.com/coldmanck/show-attend-and-tell
+RUN git clone https://github.com/jainal09/show-attend-and-tell.git
 WORKDIR show-attend-and-tell
-COPY captions_train2014 train
-COPY captions_val2014 val
+COPY captions_train2014.json train
+COPY captions_val2014.json val
 COPY model model
-COPY main.py .
+COPY app.py .
 CMD flask run -h 0.0.0.0

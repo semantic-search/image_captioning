@@ -31,6 +31,7 @@ parser.add_argument('in_files', type=werkzeug.datastructures.FileStorage, locati
 upload_parser = api.parser()
 upload_parser.add_argument('file', location='files',
                            type=FileStorage, required=True)
+
 @ns.route('/upload/')
 @ns.expect(upload_parser)
 class Upload(Resource):
@@ -38,8 +39,8 @@ class Upload(Resource):
       args = upload_parser.parse_args()
       f = args['file']
       f.save(os.path.join(app.config['UPLOAD_FOLDER'], secure_filename(f.filename)))
-      data, vocabulary = prepare_test_data(config)
       a = time.time()
+      data, vocabulary = prepare_test_data(config)
       model.test(sess, data, vocabulary)
       b = time.time()
       print(a-b)
