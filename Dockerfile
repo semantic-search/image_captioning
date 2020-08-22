@@ -13,8 +13,6 @@ RUN pip install flask
 RUN pip install -U Werkzeug==0.16.0
 RUN pip install scikit-image
 RUN pip install flask-restplus
-RUN mkdir image_caption
-WORKDIR /root/image_caption
 RUN apt-get -y install git
 RUN git clone https://github.com/jainal09/show-attend-and-tell.git
 WORKDIR show-attend-and-tell
