@@ -18,6 +18,9 @@ RUN mkdir image_caption
 WORKDIR /root/image_caption
 RUN apt-get -y install git
 RUN git clone https://github.com/coldmanck/show-attend-and-tell
+WORKDIR show-attend-and-tell
+COPY captions_train2014 train
+COPY captions_val2014 val
 COPY model model
 COPY main.py .
 CMD flask run -h 0.0.0.0
